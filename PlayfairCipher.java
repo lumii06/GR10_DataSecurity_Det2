@@ -157,3 +157,78 @@ public class PlayfairCipher{
     }
     //-----------------------decryption logic---------------------
 // decodes the output given from the cipher and decode methods (opp. of encoding process)  
+    
+
+private String decode(String out)
+    {
+        String decoded = "";
+        for(int i = 0; i < out.length() / 2; i++)
+        {
+            char a = out.charAt(2*i);
+            char b = out.charAt(2*i+1);
+            int r1 = (int) getPoint(a).getX();
+            int r2 = (int) getPoint(b).getX();
+            int c1 = (int) getPoint(a).getY();
+            int c2 = (int) getPoint(b).getY();
+            if(r1 == r2)
+            {
+                c1 = (c1 + 4) % 5;
+                c2 = (c2 + 4) % 5;
+            }
+            else if(c1 == c2)
+            {
+                r1 = (r1 + 4) % 5;
+                r2 = (r2 + 4) % 5;
+            }
+            else
+            {
+//swapping logic      
+                int temp = c1;
+                c1 = c2;
+                c2 = temp;
+            }
+            decoded = decoded + table[r1][c1] + table[r2][c2];
+        }
+//returns the decoded message  
+        return decoded;
+    }
+    // returns a point containing the row and column of the letter
+    private Point getPoint(char c)
+    {
+        Point pt = new Point(0,0);
+        for(int i = 0; i < 5; i++)
+            for(int j = 0; j < 5; j++)
+                if(c == table[i][j].charAt(0))
+                    pt = new Point(i,j);
+        return pt;
+    }
+    //function prints the key-table in matrix form for playfair cipher
+    private void keyTable(String[][] printTable)
+    {
+        System.out.println("Playfair Cipher Key Matrix: ");
+        System.out.println();
+//loop iterates for rows  
+        for(int i = 0; i < 5; i++)
+        {
+//loop iterates for column    
+            for(int j = 0; j < 5; j++)
+            {
+//prints the key-table in matrix form     
+                System.out.print(printTable[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+    //method that prints all the results
+    private void printResults(String encipher, String dec)
+    {
+        System.out.print("Encrypted Message: ");
+//prints the encrypted message  
+        System.out.println(encipher);
+        System.out.println();
+        System.out.print("Decrypted Message: ");
+//prints the decryted message  
+        System.out.println(dec);
+    }
+}
