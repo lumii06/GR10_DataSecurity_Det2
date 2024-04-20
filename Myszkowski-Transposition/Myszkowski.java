@@ -119,5 +119,98 @@ class Myszkowski {
         return lexicography;
     }
 
+    /**
+     *  Generates an order for inserting characters in the hash table depending on the keyword.
+     *
+     */
+    private Queue generateOrder(String key) {
+        Queue queue = new Queue(key.length());
+        char[] keys = key.toCharArray();
+        int[] frequency = frequency(key);
+        int[] lexicography = lexicography(key);
+        for (char character : keys) {
+            if(frequency[numberOf(character)] >= 2 ) {
+                queue.offer(lexicography[numberOf(character)]);
+            }
+            else {
+                queue.offer(lexicography[numberOf(character)]);
+            }
+        }
+        return queue;
+    }
+
+    /**
+     *  Generates a cutoff interval for inserting characters in the hash table.
+     */
+    private int[] generateCutoff(String key, int row, int column) {
+        int[] interval = new int[key.length()];
+        int[] cutoff = new int[length(key)];
+        Queue order = generateOrder(key);
+        int x = row;
+        int y = column;
+        int roll, index;
+        for (int i = 0; i < key.length(); i++) {
+            if (column == 0) {
+                interval[i] = x;
+            }
+            else if (y > 0) {
+                interval[i] = x;
+                y--;
+            }
+            else if (y == 0) {
+                interval[i] = (x-1);
+            }
+        }
+        for (int i = 0; i < key.length(); i++) {
+            roll = order.poll();
+            cutoff[roll] += interval[i];
+        }
+        return cutoff;
+    }
+
+    /**
+     *  Reduces the keyword's length by each recurring letter.
+     */
+    private int length(String key) {
+        int length = key.length();
+        int[] frequency = frequency(key);
+        for (int i = 0; i < 26; i++) {
+            if (frequency[i] >= 2) {
+                length -= (frequency[i] - 1);
+            }
+        }
+        return length;
+    }
+
+    /**
+     *  Encypts the plaintext into ciphertext using Myszkowski transposition.
+     *   Removes non-alphabetical characters from the original plaintext.
+     */
+    public String encipher(String text, String key) {
+        table = new HashTable(length(key));
+        Queue queue = generateOrder(key);
+        int row;
+        char character;
+        for (int index = 0; index < text.length(); index++) {
+            character = text.charAt(index);
+            if (isAlphabet(character)) {
+                row = queue.poll();
+                table.insert(row, character);
+                queue.offer(row);
+            }
+        }
+        queue.sort();
+        while (!table.isEmpty()) {
+            row = queue.poll();
+            while (!table.isRowEmpty(row)) {
+                character = table.pop(row);
+                builder.append(character);
+            }
+        }
+        String ciphertext = builder.toString();
+        builder.setLength(0);
+        table.clear();
+        return ciphertext;
+    }
     
 }
