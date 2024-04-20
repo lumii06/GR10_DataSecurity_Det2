@@ -5,7 +5,29 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+    // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
 
+        // Prompt the user to enter plaintext and keyword
+        System.out.print("Enter plaintext: ");
+        String plaintext = scanner.nextLine();
+
+        System.out.print("Enter keyword: ");
+        String keyword = scanner.nextLine();
+
+        // Close the Scanner
+        scanner.close();
+
+        // Example usage of Myszkowski cipher
+        Myszkowski myszkowski = new Myszkowski();
+
+        // Encrypt the plaintext
+        String ciphertext = myszkowski.encipher(plaintext, keyword);
+        System.out.println("Encrypted text: " + ciphertext);
+
+        // Decrypt the ciphertext
+        String decryptedText = myszkowski.decipher(ciphertext, keyword);
+        System.out.println("Decrypted Text: " + decryptedText);
     }
 }
 
