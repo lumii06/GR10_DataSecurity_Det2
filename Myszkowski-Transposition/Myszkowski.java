@@ -217,5 +217,38 @@ class Myszkowski {
         table.clear();
         return ciphertext;
     }
+        
+    //   Decrypts the ciphertext into plaintext using Myszkowski transposition.
+    
+    public String decipher(String text, String key) {
+        int row = row(key, text), column = column(key, text), order = 0;;
+        table = new HashTable(length(key));
+        int[] cutoff = generateCutoff(key, row, column);
+        char character;
+        for (int index = 0; index < text.length(); index++) {
+            character = text.charAt(index);
+            if (isAlphabet(character)) {
+                if (cutoff[order] != 0) {
+                    table.insert(order, character);
+                    cutoff[order] -= 1;
+                }
+                else {
+                    cutoff[++order] -= 1;
+                    table.insert(order, character);
+                }
+            }
+        }
+        Queue queue = generateOrder(key);
+        while (!table.isEmpty()) {
+            int roll = queue.poll();
+            character = table.pop(roll);
+            builder.append(character);
+            queue.offer(roll);
+        }
+        String ciphertext = builder.toString();
+        builder.setLength(0);
+        table.clear();
+        return ciphertext;
+    }
     
 }
