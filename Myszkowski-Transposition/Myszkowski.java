@@ -106,6 +106,7 @@ class Myszkowski {
      *  Determines the lexicographical order of each letters in the keyword.
 
      */
+    
     private int[] lexicography(String key) {
         char[] keys = key.toCharArray();
         int[] lexicography = new int[26];
@@ -123,6 +124,7 @@ class Myszkowski {
      *  Generates an order for inserting characters in the hash table depending on the keyword.
      *
      */
+    
     private Queue generateOrder(String key) {
         Queue queue = new Queue(key.length());
         char[] keys = key.toCharArray();
@@ -142,6 +144,7 @@ class Myszkowski {
     /**
      *  Generates a cutoff interval for inserting characters in the hash table.
      */
+    
     private int[] generateCutoff(String key, int row, int column) {
         int[] interval = new int[key.length()];
         int[] cutoff = new int[length(key)];
@@ -171,6 +174,7 @@ class Myszkowski {
     /**
      *  Reduces the keyword's length by each recurring letter.
      */
+    
     private int length(String key) {
         int length = key.length();
         int[] frequency = frequency(key);
@@ -186,6 +190,7 @@ class Myszkowski {
      *  Encypts the plaintext into ciphertext using Myszkowski transposition.
      *   Removes non-alphabetical characters from the original plaintext.
      */
+    
     public String encipher(String text, String key) {
         table = new HashTable(length(key));
         Queue queue = generateOrder(key);
