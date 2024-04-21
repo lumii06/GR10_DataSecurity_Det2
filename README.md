@@ -97,6 +97,9 @@ Meqenëse kemi 24 shkronja në ciphertext dhe keyword-i ka 8 shkronja, pjestojm�
 
 - Lexonjmë rreshtat tablës nga majtas-djathtas dhe fitojmë plaintext-in: CRACKING CODE IS SUPER FUN.
 
+## Shembull i egzekutimit 
+<img src="Images/Myskowski.png" alt="Myzkowski Cipher excecution" width="500">
+
 # Anëtarët e grupit
 - Lum Hoxha
 - Lura Gashi
