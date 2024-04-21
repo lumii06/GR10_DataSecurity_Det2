@@ -41,7 +41,15 @@ Playfair cipher është algoritëm substituimi, i cili përor matricë të rendi
 ## Shembull i egzekutimit 
 <img src="Images/playfair.png" alt="Playfair Cipher excecution" width="500">
 
+# Myszkowski  Cipher:
 
+// To be continued...
+
+# Anëtarët e grupit
+- Lum Hoxha
+- Lura Gashi
+- Lyra Bullaku
+- Lorik Agaj
 
 
 
