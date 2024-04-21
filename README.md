@@ -38,7 +38,7 @@ Playfair cipher është algoritëm substituimi, i cili përor matricë të rendi
       - Janë në të njejtin rresht => zëvendësojmë X me karakterin &rarr; (djathtas) tij dhe Y ngjashëm.
       - Krijojnë drejtëkëndësh => zëvendësojmë X me karakterin &rarr; (djathtas) tij në kufij të drejtëkëndëshit dhe Y me karakterin &larr; (majtas) tij në kufij të drejtëkëndëshit.
   * *Vëmendje: matrica është ciklike (në qoftë se karakteri X gjendet në kufij të matricës, ai zëvendësohet me karakterin në kufirin e kundërt në varësi të rastit).*
-
+## Shembull i egzekutimit 
 
 
 
